@@ -3,7 +3,7 @@ table   = 'trades'
 
 
 f = io.open(getScriptPath() .. os.date("\\%Y-%m-%d.csv"), "w")
-f:write("date,time,price,qty\n")
+f:write("date,time,price,qty,class_code,sec_code\n")
 
 for i = 0,getNumberOf(table) - 1 do
     item    = getItem(table,i)
@@ -15,6 +15,8 @@ for i = 0,getNumberOf(table) - 1 do
     else    
         str     = str..string.format("%d,%d",item.price,item.qty)           -- this is a buy 
     end
+
+    str     = str..","..item.class_code..","..item.sec_code
     --message(str)
     f:write(str.."\n")
 end
